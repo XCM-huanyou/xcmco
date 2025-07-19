@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小馋猫（深圳）网络科技有限公司 - 让技术"尝"起来更简单</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#137fc8', // 橙色主色调 137fc8
+                        secondary: '#1E3A8A', // 深蓝色辅助色
+                        light: '#F9FAFB', // 浅色背景
+                        dark: '#1F2937', // 深色文字
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s ease;
+            }
+            .bg-gradient-orange {
+                background: linear-gradient(135deg, #FF7A00 0%, #FF9A3C 100%);
+            }
+            .bg-gradient-blue {
+                background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-white">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-custom bg-transparent">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-1">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                    <!-- <i class="fa fa-cutlery text-white text-xl"></i> -->
+                    <img src="./image/logo.png" class="w-8 h-9 pt-1"/>
+                </div>
+                <span class="text-2xl font-bold text-white text-shadow">小馋猫科技</span>
+            </a>
+            
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-white hover:text-primary transition-custom font-medium">首页</a>
+                <a href="#blog" class="text-white hover:text-primary transition-custom font-medium">小馋猫学习</a>
+                <a href="#about" class="text-white hover:text-primary transition-custom font-medium">关于小馋猫</a>
+                <a href="#services" class="text-white hover:text-primary transition-custom font-medium">业务中心</a>
+                <a href="#cases" class="text-white hover:text-primary transition-custom font-medium">案例展示</a>
+                <a href="#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full transition-custom font-medium">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#" class="text-dark hover:text-primary py-2 border-b border-gray-100">首页</a>
+                <a href="#blog" class="text-dark hover:text-primary py-2 border-b border-gray-100">小馋猫学习</a>
+                <a href="#about" class="text-dark hover:text-primary py-2 border-b border-gray-100">关于我们</a>
+                <a href="#services" class="text-dark hover:text-primary py-2 border-b border-gray-100">业务中心</a>
+                <a href="#cases" class="text-dark hover:text-primary py-2 border-b border-gray-100">案例展示</a>
+                <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full text-center">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner轮播区 -->
+    <section class="relative h-screen">
+        <div class="absolute inset-0 bg-gradient-to-r from-secondary to-blue-900 opacity-90 z-10"></div>
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://picsum.photos/id/180/1920/1080')] bg-cover bg-center animate-fade-in"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 h-full flex items-center relative z-20">
+            <div class="max-w-2xl">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white leading-tight mb-6 text-shadow">
+                    让技术<span class="text-primary">"尝"</span>起来更简单
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 mb-8 max-w-xl">
+                    小馋猫科技专注于软硬件开发、网站建设，用技术为企业"解馋"，从需求到落地，全流程"贴心投喂"式服务
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#services" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-custom font-medium text-lg">
+                        定制解决方案
+                    </a>
+                    <a href="#cases" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3 rounded-full transition-custom font-medium text-lg">
+                        浏览案例
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white animate-bounce">
+            <i class="fa fa-angle-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- 核心优势 -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">为什么选择小馋猫？</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">我们不只提供技术服务，更像懂你需求的"美食主厨"，为你定制"对味"的解决方案</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 优势1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-users text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">专业团队</h3>
+                    <p class="text-gray-600">5年以上经验工程师占比80%，曾服务华为、腾讯等企业，技术实力有保障</p>
+                </div>
+                
+                <!-- 优势2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-bolt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">快速响应</h3>
+                    <p class="text-gray-600">24小时需求对接，紧急项目72小时出原型，不让你的业务"饿肚子"</p>
+                </div>
+                
+                <!-- 优势3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-shield text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">售后保障</h3>
+                    <p class="text-gray-600">项目交付后1年免费维护，终身技术支持，让你的系统"持续保鲜"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://picsum.photos/id/20/600/400" alt="小馋猫团队" class="rounded-xl shadow-lg w-full h-auto">
+                </div>
+                
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6">关于小馋猫科技</h2>
+                    <p class="text-gray-600 mb-6">
+                        小馋猫（深圳）网络科技有限公司成立于2018年，不是真的猫，是一群懂技术、更懂需求的"技术吃货"。我们专注用代码和创意"烹饪"技术解决方案，让企业不再为技术问题"饿肚子"。
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        从成立至今，我们已服务100+企业客户，涵盖餐饮、科技、电商、教育等多个领域，用技术帮助客户提升业务效率，实现数字化转型。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <div class="text-primary text-3xl font-bold mb-1">5+</div>
+                            <p class="text-gray-600">年行业经验</p>
+                        </div>
+                        <div>
+                            <div class="text-primary text-3xl font-bold mb-1">100+</div>
+                            <p class="text-gray-600">成功案例</p>
+                        </div>
+                        <div>
+                            <div class="text-primary text-3xl font-bold mb-1">30+</div>
+                            <p class="text-gray-600">专业团队</p>
+                        </div>
+                        <div>
+                            <div class="text-primary text-3xl font-bold mb-1">98%</div>
+                            <p class="text-gray-600">客户满意度</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-custom font-medium">
+                        了解更多
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 业务中心 -->
+    <section id="services" class="py-20 bg-gradient-to-b from-white to-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">我们的"拿手菜"</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">聚焦技术服务，满足企业多样化需求，每一项服务都是我们精心研发的"特色菜"</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 业务1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/0/600/400" alt="网站开发" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-globe text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">网站开发</h3>
+                        <p class="text-gray-600 mb-4">从企业官网到电商平台，定制响应式网站，适配全终端，让用户"一眼爱上"</p>
+                        <a href="#" class="text-primary font-medium hover:underline inline-flex items-center">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 业务2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/160/600/400" alt="网页设计" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-paint-brush text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">网页设计</h3>
+                        <p class="text-gray-600 mb-4">以用户体验为核心，融合视觉美学与功能逻辑，设计"有味道"的网页</p>
+                        <a href="#" class="text-primary font-medium hover:underline inline-flex items-center">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 业务3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/119/600/400" alt="软硬件开发" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-microchip text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">软硬件开发</h3>
+                        <p class="text-gray-600 mb-4">定制化软件系统、硬件嵌入式开发，解决企业"技术饥荒"</p>
+                        <a href="#" class="text-primary font-medium hover:underline inline-flex items-center">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 业务4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/169/600/400" alt="技术运维" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-cogs text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">技术运维</h3>
+                        <p class="text-gray-600 mb-4">网站/系统日常维护、漏洞修复，让技术"持续保鲜"</p>
+                        <a href="#" class="text-primary font-medium hover:underline inline-flex items-center">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例展示 -->
+    <section id="cases" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">"尝"过都说好——合作案例</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">每一个案例都是我们用心"烹饪"的作品，看看这些"菜品"是否符合你的口味</p>
+            </div>
+            
+            <!-- 案例筛选 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="bg-primary text-white px-5 py-2 rounded-full">全部案例</button>
+                <button class="bg-white hover:bg-primary hover:text-white px-5 py-2 rounded-full transition-custom">网站开发</button>
+                <button class="bg-white hover:bg-primary hover:text-white px-5 py-2 rounded-full transition-custom">APP开发</button>
+                <button class="bg-white hover:bg-primary hover:text-white px-5 py-2 rounded-full transition-custom">软硬件开发</button>
+                <button class="bg-white hover:bg-primary hover:text-white px-5 py-2 rounded-full transition-custom">网页设计</button>
+            </div>
+            
+            <!-- 案例列表 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 案例1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-custom">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/id/26/600/400" alt="餐饮连锁品牌官网" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
+                            <a href="#" class="bg-white text-primary px-5 py-2 rounded-full font-medium">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-primary font-medium">网站开发</span>
+                            <span class="text-sm text-gray-500">餐饮行业</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">某餐饮连锁品牌官网</h3>
+                        <p class="text-gray-600 text-sm">用技术让美食"在线飘香"，上线后品牌曝光提升50%</p>
+                    </div>
+                </div>
+                
+                <!-- 案例2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-custom">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/id/96/600/400" alt="科技公司APP" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
+                            <a href="#" class="bg-white text-primary px-5 py-2 rounded-full font-medium">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-primary font-medium">APP开发</span>
+                            <span class="text-sm text-gray-500">科技行业</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">某科技公司智能控制APP</h3>
+                        <p class="text-gray-600 text-sm">打通用户与设备的智能连接，用户活跃度提升40%</p>
+                    </div>
+                </div>
+                
+                <!-- 案例3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-custom">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/id/24/600/400" alt="电商平台改版" class="w-full h-64 object-cover transition-custom group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
+                            <a href="#" class="bg-white text-primary px-5 py-2 rounded-full font-medium">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-primary font-medium">网页设计</span>
+                            <span class="text-sm text-gray-500">电商行业</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">某电商平台视觉改版</h3>
+                        <p class="text-gray-600 text-sm">流量提升30%的视觉升级方案，转化率显著提高</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full transition-custom font-medium">
+                    查看全部案例
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section class="py-20 bg-secondary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">客户"试吃"反馈</h2>
+                <p class="max-w-2xl mx-auto opacity-80">听听我们的客户怎么说，他们的满意是对我们最好的肯定</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 评价1 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="mb-6 italic">"小馋猫团队把我们的'模糊需求'变成了'精准方案'，像懂美食的厨师一样懂用户。合作过程非常顺畅，他们总能提前想到我们没考虑到的细节。"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/64/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">张总</h4>
+                            <p class="text-sm opacity-80">某餐饮连锁品牌</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价2 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="mb-6 italic">"官网上线后咨询量涨了40%，技术'味道'很对客户胃口！小馋猫团队不仅技术过硬，审美也在线，做出的页面既美观又实用，非常推荐！"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/65/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">李总</h4>
+                            <p class="text-sm opacity-80">某科技初创公司</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价3 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                    <p class="mb-6 italic">"作为一家电商公司，我们需要一个既美观又能提高转化率的网站。小馋猫团队做到了，他们的设计让我们的产品更有吸引力，销售额明显提升。"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/91/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">王总</h4>
+                            <p class="text-sm opacity-80">某电商平台</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 小馋猫学习 -->
+    <section id="blog" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">小馋猫学习</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">分享技术干货、行业动态，让你随时了解最新的"烹饪技巧"</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 博客1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/42/600/400" alt="餐饮企业官网设计" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span><i class="fa fa-calendar-o mr-2"></i> 2023-06-15</span>
+                            <span class="ml-4"><i class="fa fa-folder-o mr-2"></i> 设计技巧</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 hover:text-primary transition-custom">
+                            <a href="#">餐饮企业官网如何融入"食欲感"设计？3个技巧</a>
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">如何让你的餐饮官网看起来更有"食欲"？本文分享3个实用设计技巧，让用户在浏览时就垂涎欲滴...</p>
+                        <a href="http://xcmxx.cn" class="text-primary font-medium hover:underline inline-flex items-center">
+                            阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 博客2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/48/600/400" alt="响应式网站开发" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span><i class="fa fa-calendar-o mr-2"></i> 2023-05-28</span>
+                            <span class="ml-4"><i class="fa fa-folder-o mr-2"></i> 技术教程</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 hover:text-primary transition-custom">
+                            <a href="#">响应式网站开发：让手机用户也有"好体验"</a>
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">随着移动设备的普及，响应式设计已成为标配。本文详解响应式网站开发的核心要点和实现方法...</p>
+                        <a href="#" class="text-primary font-medium hover:underline inline-flex items-center">
+                            阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 博客3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/60/600/400" alt="电商平台案例解析" class="w-full h-full object-cover transition-custom hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span><i class="fa fa-calendar-o mr-2"></i> 2023-05-08</span>
+                            <span class="ml-4"><i class="fa fa-folder-o mr-2"></i> 案例解析</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 hover:text-primary transition-custom">
+                            <a href="#">小馋猫案例：如何用技术帮电商平台"留住客户"</a>
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">通过一个实际案例，详解我们如何通过技术优化，帮助某电商平台降低跳出率，提高用户停留时间...</p>
+                        <a href="http://xcmxx.cn" class="text-primary font-medium hover:underline inline-flex items-center">
+                            阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full transition-custom font-medium">
+                    查看更多文章
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6">想"解馋"？随时找我们</h2>
+                    <p class="text-gray-600 mb-8">不管是技术咨询、方案定制，还是合作洽谈，小馋猫都等你来"撩"，我们随时准备为你服务</p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-map-marker text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-1">公司地址</h3>
+                                <p class="text-gray-600">深圳市南山区招商街道赤湾社区赤湾一路10号山灵数码A栋</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-phone text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-1">联系电话</h3>
+                                <p class="text-gray-600">18098938035（黄先生）</p>
+                                <p class="text-gray-600">18928465260（苏女士）</p>
+                                <p class="text-gray-500 text-sm">工作时间：9:00-18:00（周一至周五）</p>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fa fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-1">电子邮箱</h3>
+                                <p class="text-gray-600">service@xiaochanmao.com</p>
+                            </div>
+                        </div> -->
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">关注我们</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-custom">
+                                <i class="fa fa-weixin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-custom">
+                                <i class="fa fa-weibo"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-custom">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-custom">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-light p-8 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold mb-6">需求"点餐表"</h3>
+                        <form>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-custom" placeholder="请输入您的姓名">
+                                </div>
+                                <div>
+                                    <label for="company" class="block text-gray-700 mb-2">公司名称</label>
+                                    <input type="text" id="company" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-custom" placeholder="请输入公司名称">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 mb-2">联系电话</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-custom" placeholder="请输入您的联系电话">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="service" class="block text-gray-700 mb-2">需求类型</label>
+                                <select id="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-custom">
+                                    <option value="">请选择需求类型</option>
+                                    <option value="website">网站开发</option>
+                                    <option value="design">网页设计</option>
+                                    <option value="software">软硬件开发</option>
+                                    <option value="maintain">技术运维</option>
+                                    <option value="other">其他服务</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 mb-2">需求描述（"想吃点什么技术？"）</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-custom" placeholder="请描述您的具体需求..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full transition-custom font-medium text-lg">
+                                提交需求，等待"上菜"
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-1 mb-6">
+                        <div class="w-10 h-10  rounded-full flex items-center justify-center">
+                            <!-- <i class="fa fa-cutlery text-white text-xl"></i> -->
+                            <img src="./image/logo.png" class="w-8 h-9 pt-1"/>
+                        </div>
+                        <span class="text-2xl font-bold">小馋猫科技</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">小馋猫（深圳）网络科技有限公司，用技术为企业"解馋"，让复杂需求变简单</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-custom">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-custom">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-custom">
+                            <i class="fa fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-custom">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">首页</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-primary transition-custom">小馋猫学习</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-primary transition-custom">关于我们</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-primary transition-custom">业务中心</a></li>
+                        <li><a href="#cases" class="text-gray-400 hover:text-primary transition-custom">案例展示</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-primary transition-custom">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">业务范围</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">网站开发</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">网页设计</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">软硬件开发</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">技术运维</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">APP开发</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-custom">系统定制</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">联系方式</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">深圳市南山区招商街道赤湾社区赤湾一路10号山灵数码A栋</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">18098938035（黄先生）</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">18928465260（苏女士）</span>
+                        </li>
+                        <!-- <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">service@xiaochanmao.com</span>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 小馋猫（深圳）网络科技有限公司 版权所有</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-custom">隐私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-custom">服务条款</a>
+                    <a href="#" class="text-gray-400 hover:text-primary text-sm transition-custom">法律声明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-custom z-50">
+        <i class="fa fa-angle-up text-xl"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-dark', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+                
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 回到顶部
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
